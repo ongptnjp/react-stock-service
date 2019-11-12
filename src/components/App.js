@@ -20,9 +20,7 @@ class App extends React.Component {
           <hr width="500" />
           <nav>
             <Link to="/">Home</Link> | &nbsp;
-            <Link to="/procedures">Procedures</Link> | &nbsp;
             <Link to="/contact">Contact Us</Link> | &nbsp;
-            <Link to="/teeth">Teeth Sales</Link>
           </nav>
           <hr width="500" />
           <Route exact path="/" component={ StockPage } />
