@@ -1,0 +1,112 @@
+.App {
+  text-align: center;
+  height: 100vh;
+}
+
+.theme-light {
+  background: white;
+}
+
+.theme-dark {
+  background: darkslategray;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.history {
+  
+  &-input {
+    width: 40vh;
+    padding: 5px;
+    margin: 10px 0;
+  }
+}
+
+
+.company {
+
+  &_title {
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &_symbol {
+    font-size: 3.4rem;
+    margin-right: 1.25rem;
+    height: 3.4rem;
+  }
+
+  &_name {
+    font-size: 1.25rem;
+    line-height: 1.125rem;
+  }
+
+  &_price {
+    &-common {
+      &-little {
+        font-size: 0.6rem;
+      }
+      &-big2 {
+        font-size: 2rem;
+      }
+      display: flex;
+    }
+
+    &-date {
+      margin-right: 1.5rem;
+    }
+
+    &-close {
+      margin-right: 1.5rem;
+    }
+
+    &-change {
+      margin-right: 1.5rem;
+    }
+
+    &-percent {
+      margin-right: 1.5rem;
+    }
+  }
+
+  &_stat {
+    &-table{
+      font-size: 0.8125rem;
+    }
+
+    &-left {
+      text-align: left;
+    }
+
+    &-right {
+      text-align: right;
+    }
+
+  }
+
+}

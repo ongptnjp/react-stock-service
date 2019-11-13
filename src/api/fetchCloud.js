@@ -3,12 +3,38 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const fetchLastPrice = async(symbol) => {
-  let response
+export const fetchKeyStat = async(symbol) => {
   try {
-    response = await cloud.get(`/stock/${symbol}/price?token=${process.env.REACT_APP_CLOUD_SANDBOX_KEY}`);
+    const response = await cloud.get(`/stock/${symbol}/stats/5?token=${process.env.REACT_APP_CLOUD_SANDBOX_KEY}`);
+    return response.data
   } catch (error) {
-    console.log("error", error);
+    console.error("fetch last price", error);
   }
-  return response.data
+};
+
+export const fetchPrevPrice = async(symbol) => {
+  try {
+    const response = await cloud.get(`/stock/${symbol}/previous?token=${process.env.REACT_APP_CLOUD_SANDBOX_KEY}`);
+    return response.data
+  } catch (error) {
+    console.error("fetch privious price", error);
+  }
+};
+
+export const fetchHistory = async(symbol, time) => {
+  try {
+    const response = await cloud.get(`/stock/${symbol}/chart/${time}?token=${process.env.REACT_APP_CLOUD_SANDBOX_KEY}`);
+    return response.data
+  } catch (error) {
+    console.error("fetch history", error);
+  }
+}
+
+export const fetchCompany = async(symbol) => {
+  try {
+    const response = await cloud.get(`/stock/${symbol}/company?token=${process.env.REACT_APP_CLOUD_SANDBOX_KEY}`);
+    return response.data
+  } catch (error) {
+    console.error("fetch company", error);
+  }
 }
