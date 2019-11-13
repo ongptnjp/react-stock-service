@@ -16,12 +16,10 @@ class App extends React.Component {
       <div className="App">
 
         <Router>
-          <hr width="500" />
-          <nav>
-            <Link to="/">Home</Link> | &nbsp;
-            <Link to="/history">History</Link>
-          </nav>
-          <hr width="500" />
+          <div className="navbar">
+            <Link to="/" className="navbar-title">Home</Link>
+            <Link to="/history" className="navbar-title">History</Link>
+          </div>
           <Route exact path="/" component={ StockPage } />
           <Route exact path="/history" component={ History } />
         </Router>
