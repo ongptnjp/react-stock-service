@@ -22,7 +22,7 @@ const CompanyProfile = props => {
       <h2 className="company_title">
         <span className="company_symbol">{company.symbol}</span>
         <span className="company_name">{company.companyName}</span>
-        <span className="material-icons" style={{cursor: "pointer"}} onClick={() => setIsFave(!isFave)}>{isFave ? "favorite" : "favorite_border"}</span>
+        <span className="material-icons" style={{cursor: "pointer"}} onClick={() => setIsFave(company.symbol)}>{isFave ? "favorite" : "favorite_border"}</span>
       </h2>
       <div className="company_price-common company_price-common-little">
         <p className="company_price-date">{`Data as of ${new Date(prevPrice.date).toDateString()}`}</p>

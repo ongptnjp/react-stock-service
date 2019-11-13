@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { fetchKeyStat, fetchCompany, fetchPrevPrice, fetchHistory } from "../api/fetchCloud";
 
 import CompanyProfile from "./CompanyProfile";
 import Graph from "./Graph";
-
+import Favorite from "./Favorite";
+import { LOCAL_FAV } from "./constant";
 
 const StockPage = props => {
   const [stock, setStock] = useState();
@@ -14,6 +15,7 @@ const StockPage = props => {
   const [time , setTime] = useState();
   const [isFound, setIsFound] = useState(true);
 
+  const [favList, setFavList] = useState([]);
   const [isFave, setIsFave] = useState(false);
 
   const onFetchKeyStat = async symbol => {
@@ -44,6 +46,9 @@ const StockPage = props => {
 
   const onClickSearch = async symbol => {
     setIsFound(true);
+    setIsFave(false);
+
+    favList.map(data => data === symbol ? setIsFave(true) : "");
 
     const companyStat = await onFetchKeyStat(symbol);
     if (!companyStat) return setIsFound(false);
@@ -71,8 +76,44 @@ const StockPage = props => {
     setStock(e.target.value)
   }
 
+  useEffect(() => {
+    const local = JSON.parse(localStorage.getItem(LOCAL_FAV));
+
+    if (local !== undefined) {
+      console.log("local storage", local);
+      setFavList(local);
+    }
+  }, [])
+
+  const onClickFav = symbol => {
+    let favListTemp = [...favList];
+    let isFav = false;
+    let indexFav = 0;
+    favList.map((fav, index) => {
+      if (symbol === fav) {
+        indexFav = index
+        isFav = true
+      };
+    });
+    if (!isFav) {
+      favListTemp.push(symbol);
+    } else {
+      favListTemp.splice(indexFav , 1);
+    }
+
+    console.log("fav List Temp", favListTemp);
+    setIsFave(!isFave)
+    setFavList(favListTemp);
+    localStorage.setItem(LOCAL_FAV, JSON.stringify(favListTemp));
+  }
+
+
   return (
     <div className="home-page">
+      <Favorite
+        faves={favList}
+        onClickSearch={onClickSearch}
+      />
       <input
         type="text"
         placeholder="Please Stock Here!"
@@ -86,7 +127,7 @@ const StockPage = props => {
           prevPrice={prevPrice}
           keyStat={keyStat}
           isFave={isFave}
-          setIsFave={setIsFave}
+          setIsFave={onClickFav}
         />
       }
       { historyData && <Graph historyData={historyData} /> }

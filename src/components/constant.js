@@ -9,3 +9,5 @@ export const rangeTime = {
   oneMonth: "1m",
   fiveDay: "5d"
 };
+
+export const LOCAL_FAV = "favorite";

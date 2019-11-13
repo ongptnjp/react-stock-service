@@ -4,7 +4,7 @@
 }
 
 .navbar {
-  margin-bottom: 20px;
+  margin: 20px 0;
   &-title {
     text-decoration: none;
     margin-right: 3vh;
@@ -35,6 +35,11 @@
     margin-bottom: 0.6rem;
     display: flex;
     align-items: flex-end;
+  }
+
+  &_icon {
+    margin: 0 10px;
+    cursor: pointer;
   }
 
   &_symbol {
@@ -100,4 +105,57 @@
   width: 95%;
   height: 300px;
   margin-bottom: 30px;
+}
+
+.fav {
+  li:hover {
+    background: red;
+    cursor: pointer;
+  }
+
+  p {
+    text-decoration: none;
+  }
+  
+  ul {
+    background: darkorange;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  li {
+    color: #fff;
+    background: darkorange;
+    display: block;
+    float: left;
+    padding: 1rem;
+    position: relative;
+    text-decoration: none;
+    transition-duration: 0.5s;
+  }
+
+  ul li ul {
+    background: orange;
+    visibility: hidden;
+    opacity: 0;
+    min-width: 5rem;
+    position: absolute;
+    transition: all 0.5s ease;
+    margin-top: 1rem;
+    left: 0;
+    display: none;
+  }
+
+  ul li:hover > ul,
+  ul li ul:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
+
+  ul li ul li {
+    clear: both;
+    width: 100%;
+  }
 }
