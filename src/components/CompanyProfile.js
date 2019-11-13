@@ -2,13 +2,27 @@ import React from "react";
 import NumberFormat from "react-number-format";
 
 const CompanyProfile = props => {
-  const { company, prevPrice, keyStat } = props;
+  const { company, prevPrice, keyStat, isFave, setIsFave } = props;
+
+  const tableRowSet = (title, numberValue, className = "") => (
+    <tr>
+      <td className="company_stat-left">{title}</td>
+      <td className="company_stat-right"><NumberFormat 
+        displayType={"text"}
+        value={numberValue}
+        decimalScale={2}
+        thousandSeparator={true}
+        className={className} />
+      </td>
+    </tr>
+  )
 
   return (
     <div className="company">
       <h2 className="company_title">
         <span className="company_symbol">{company.symbol}</span>
         <span className="company_name">{company.companyName}</span>
+        <span className="material-icons" style={{cursor: "pointer"}} onClick={() => setIsFave(!isFave)}>{isFave ? "favorite" : "favorite_border"}</span>
       </h2>
       <div className="company_price-common company_price-common-little">
         <p className="company_price-date">{`Data as of ${new Date(prevPrice.date).toDateString()}`}</p>
@@ -45,36 +59,23 @@ const CompanyProfile = props => {
             </tr>
           </tbody>
           <tbody>
+            {tableRowSet("Volume", prevPrice.volume)}
+            {tableRowSet("Open", prevPrice.open)}
+            {tableRowSet("Market Cap", keyStat.marketcap)}
+          </tbody>
+        </table>
+        <table className="company_stat-table">
+          <tbody>
             <tr>
-              <td className="company_stat-left">Volume</td>
-              <td className="company_stat-right"><NumberFormat 
-                displayType={"text"}
-                value={prevPrice.volume}
-                decimalScale={2}
-                thousandSeparator={true}
-                className="" />
+              <td className="company_stat-left">
+                Key Stats
               </td>
             </tr>
-            <tr>
-              <td className="company_stat-left">Open</td>
-              <td className="company_stat-right"><NumberFormat 
-                displayType={"text"}
-                value={prevPrice.open}
-                decimalScale={2}
-                thousandSeparator={true}
-                className="" />
-              </td>
-            </tr>
-            <tr>
-              <td className="company_stat-left">Market Cap</td>
-              <td className="company_stat-right"><NumberFormat 
-                displayType={"text"}
-                value={keyStat.marketcap}
-                decimalScale={2}
-                thousandSeparator={true}
-                className="" />
-              </td>
-            </tr>
+          </tbody>
+          <tbody>
+            {tableRowSet("EPS", keyStat.ttmEPS)}
+            {tableRowSet("Beta", keyStat.beta)}
+            {tableRowSet("PE Ratio", keyStat.peRatio)}
           </tbody>
         </table>
       </div>

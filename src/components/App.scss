@@ -46,8 +46,10 @@
   }
 }
 
-
 .company {
+
+  width: 150vh;
+  margin: 20px 0;
 
   &_title {
     margin-bottom: 0.6rem;
@@ -95,8 +97,11 @@
   }
 
   &_stat {
+    display: flex;
+    margin: 10px 0;
     &-table{
       font-size: 0.8125rem;
+      flex: 1;
     }
 
     &-left {
@@ -109,4 +114,10 @@
 
   }
 
+}
+
+.graph {
+  width: 150vh;
+  height: 300px;
+  margin-bottom: 30px;
 }

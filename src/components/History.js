@@ -19,7 +19,7 @@ const History = props => {
     setStock(e.target.value)
   }
 
-  const onClickFetchHistory = async (stock, time) => {
+  const onClickFetchHistory = async (stock, time="1m") => {
     const response = await fetchHistory(stock, time);
 
     if (response) return setHistoryData(response);

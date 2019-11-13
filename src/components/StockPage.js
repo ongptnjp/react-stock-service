@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { fetchKeyStat, fetchCompany, fetchPrevPrice} from "../api/fetchCloud";
+import { fetchKeyStat, fetchCompany, fetchPrevPrice, fetchHistory } from "../api/fetchCloud";
 
 import CompanyProfile from "./CompanyProfile";
+import Graph from "./Graph";
 
 
 const StockPage = props => {
@@ -9,7 +10,11 @@ const StockPage = props => {
   const [keyStat, setKeyStat] = useState();
   const [company, setCompany] = useState();
   const [prevPrice, setPrevPrice] = useState();
+  const [historyData, setHistoryData] = useState();
+  const [time , setTime] = useState();
   const [isFound, setIsFound] = useState(true);
+
+  const [isFave, setIsFave] = useState(false);
 
   const onFetchKeyStat = async symbol => {
     const response = await fetchKeyStat(symbol);
@@ -30,6 +35,13 @@ const StockPage = props => {
     return null;
   }
 
+  const onFetchHistory = async (stock, time="1m") => {
+    const response = await fetchHistory(stock, time);
+
+    if (response) return response;
+    return null;
+  }
+
   const onClickSearch = async symbol => {
     setIsFound(true);
 
@@ -42,10 +54,14 @@ const StockPage = props => {
     const companyProfile = await onFetchCompany(symbol);
     if (!companyProfile) return setIsFound(false);
 
+    const companyHistory = await onFetchHistory(symbol);
+    if (!companyHistory) return setIsFound(false);
+
     if (companyProfile && companyPrev && companyProfile) {
       setKeyStat(companyStat);
       setCompany(companyProfile);
       setPrevPrice(companyPrev);
+      setHistoryData(companyHistory);
     };
     
   }
@@ -63,15 +79,17 @@ const StockPage = props => {
         onChange={e => onChangeInput(e)}/> <br />
       <button onClick={() => onClickSearch(stock)}>Search</button>
 
-
-      {/* { lastPrice && <h2>{stock.toUpperCase()} last price : {lastPrice}</h2>} */}
-      { keyStat && company && prevPrice && 
+      {!isFound && <h2>{stock.toUpperCase()} is not found !! please try agian.</h2>}
+      { keyStat && company && prevPrice &&
         <CompanyProfile 
           company={company}
           prevPrice={prevPrice}
-          keyStat={keyStat} />
+          keyStat={keyStat}
+          isFave={isFave}
+          setIsFave={setIsFave}
+        />
       }
-      {!isFound && <h2>{stock.toUpperCase()} is not found !! please try agian.</h2>}
+      { historyData && <Graph historyData={historyData} /> }
       
     </div>
   )
