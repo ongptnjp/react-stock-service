@@ -38,3 +38,12 @@ export const fetchCompany = async(symbol) => {
     console.error("fetch company : ", error);
   }
 }
+
+export const fetchNews = async symbol => {
+  try {
+    const response = await cloud.get(`/stock/${symbol}/news?token=${process.env.REACT_APP_CLOUD_SANDBOX_KEY}`);
+    return response.data
+  } catch (error) {
+    console.error("fetch news : ", error);
+  }
+}

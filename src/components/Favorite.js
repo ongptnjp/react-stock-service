@@ -9,7 +9,7 @@ const Favorite = props => {
         <li>
           <p>Favorite</p>
           <ul className="fav-dropdown">
-            {faves.map((fav, index) => (
+            {faves && faves.map((fav, index) => (
             <li key={index} onClick={() => onClickSearch(fav)}><p>{fav}</p></li>
             ))}
           </ul>
