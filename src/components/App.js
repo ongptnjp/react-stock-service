@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import StockPage from "./StockPage";
-import History from "./History";
+import FeedNews from "./FeedNews";
 
 class App extends React.Component {
   render() {
@@ -18,10 +18,10 @@ class App extends React.Component {
         <Router>
           <div className="navbar">
             <Link to="/" className="navbar-title">Home</Link>
-            <Link to="/history" className="navbar-title">History</Link>
+            <Link to="/history" className="navbar-title">News</Link>
           </div>
           <Route exact path="/" component={ StockPage } />
-          <Route exact path="/history" component={ History } />
+          <Route exact path="/history" component={ FeedNews } />
         </Router>
       </div>
     );

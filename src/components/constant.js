@@ -19,6 +19,10 @@ export const STOCK_LIST = [
     symbol: "AMZN"
   },
   {
+    name: "Apple, Inc.",
+    symbol: "aapl"
+  },
+  {
     name: "Alphabet",
     symbol: "GOOGL"
   },
