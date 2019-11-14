@@ -127,8 +127,8 @@ const StockPage = () => {
         onClickSearch={onClickSearch}
       />
       <div className="dropdown">
-          <select onChange={e => onClickSearch(e.target.value)} >
-            <option>Please Select Stock</option>
+          <select onChange={e => onClickSearch(e.target.value)} className="select">
+            <option selected disabled>Please Select Stock</option>
             {STOCK_LIST.map(data => <option value={data.symbol} key={data.symbol}>{data.name}</option>)}
           </select>
       </div>
