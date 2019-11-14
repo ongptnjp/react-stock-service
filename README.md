@@ -1,9 +1,12 @@
-##Project url 
+## Project url 
 `https://tanat-us-stock.herokuapp.com/`
 
-##Server deployment
+## Server deployment
 `https://wwww.heroku.com/`
 
-##Api provider
+## Api provider
 `https://iexcloud.io/`
+
+## Icon
+
 
